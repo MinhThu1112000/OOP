@@ -1,3 +1,4 @@
+import graph.FormatPath;
 import graph.Graph;
 
 import java.io.*;
@@ -8,9 +9,10 @@ public class Main {
     private static final String png_source = "output\\png\\";
     private static final String dot_source = "output\\dot\\";
 
+
     public static void readFile(String filename, Graph graph) {
         try {
-            FileReader fr = new FileReader(input_source + filename);
+            FileReader fr = new FileReader(FormatPath.formatPath(input_source) + filename);
             BufferedReader br = new BufferedReader(fr);
             String line;
             while((line = br.readLine()) != null){
@@ -30,22 +32,22 @@ public class Main {
     public static void writePngFile(String link_dot_file, String link_png_file) {
         Runtime rt = Runtime.getRuntime();
         try {
-            Process pr = rt.exec("dot -Tpng " + dot_source + link_dot_file + " -o " + png_source + link_png_file);
+            Process pr = rt.exec("dot -Tpng " + FormatPath.formatPath(dot_source) + link_dot_file + " -o " + FormatPath.formatPath(png_source) + link_png_file);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void ex1(Graph graph) {
-        graph.writeDotFile("ex1\\ex1.dot");
-        writePngFile("ex1\\ex1.dot", "ex1\\ex1.png");
+        graph.writeDotFile(FormatPath.formatPath("ex1\\") + "ex1.dot");
+        writePngFile(FormatPath.formatPath("ex1\\") + "ex1.dot", FormatPath.formatPath("ex1\\") + "ex1.png");
     }
     public static void ex2(Graph graph, String start, String end) {
         System.out.println(graph.findAllPaths(start, end));
     }
     public static void ex3(Graph graph, String start, String end) {
-        File index_dot = new File("output\\dot\\ex3");
-        File index_png = new File("output\\png\\ex3");
+        File index_dot = new File(FormatPath.formatPath("output\\dot\\ex3"));
+        File index_png = new File(FormatPath.formatPath("output\\png\\ex3"));
         String[] entries_dot = index_dot.list();
         String[] entries_png = index_png.list();
         for(String s: entries_dot) {
@@ -60,8 +62,8 @@ public class Main {
 
         for(List<String> l: graph.findAllPaths(start, end)) {
             String name = l.toString().replace(", ", "_");
-            graph.writeDotFile("ex3\\" + name + ".dot", l);
-            writePngFile("ex3\\" + name + ".dot", "ex3\\" + name + ".png");
+            graph.writeDotFile(FormatPath.formatPath("ex3\\") + name + ".dot", l);
+            writePngFile(FormatPath.formatPath("ex3\\") + name + ".dot", FormatPath.formatPath("ex3\\") + name + ".png");
         }
     }
     public static void main(String[] args){
@@ -72,5 +74,6 @@ public class Main {
         ex1(graph);
         ex2(graph, start, end);
         ex3(graph, start, end);
+//        System.out.println("Mac OS X".equals(System.getProperty("os.name")));
     }
 }

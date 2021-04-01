@@ -82,7 +82,7 @@ public class Graph {
     }
 
     public void writeDotFile(String dotfile) {
-        File myObj = new File(this.dot_source + dotfile);
+        File myObj = new File(FormatPath.formatPath(this.dot_source) + dotfile);
         try {
             myObj.createNewFile();
         } catch (IOException e) {
@@ -90,7 +90,7 @@ public class Graph {
         }
 
         try {
-            FileWriter myWriter = new FileWriter(this.dot_source + dotfile);
+            FileWriter myWriter = new FileWriter(FormatPath.formatPath(this.dot_source) + dotfile);
             myWriter.write("digraph myGraph {\n");
             for (Map.Entry<Vertex, List<Vertex>> entry : this.getAdjVertices().entrySet()) {
                 if (entry.getValue().size() > 0) {
@@ -113,7 +113,7 @@ public class Graph {
         for (int i = 0; i < path.size() - 1; i++) {
             listpath.add(new Pair(path.get(i), path.get(i + 1)));
         }
-        File myObj = new File(dot_source + dotfile);
+        File myObj = new File(FormatPath.formatPath(dot_source)+ dotfile);
         try {
             myObj.createNewFile();
         } catch (IOException e) {
@@ -121,7 +121,7 @@ public class Graph {
         }
 
         try {
-            FileWriter myWriter = new FileWriter(dot_source + dotfile);
+            FileWriter myWriter = new FileWriter(FormatPath.formatPath(dot_source) + dotfile);
             myWriter.write("digraph myGraph {\n");
             for (Map.Entry<Vertex, List<Vertex>> entry : this.getAdjVertices().entrySet()) {
                 if (entry.getValue().size() > 0) {

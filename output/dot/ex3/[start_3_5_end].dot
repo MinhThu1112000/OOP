@@ -3,9 +3,9 @@ digraph myGraph {
 	2 -> 3
 	2 -> 4
 	3 -> 4
-	3 -> 5
-	5 -> end
+	3 -> 5 [color = red]
+	5 -> end [color = red]
 	start -> 1
 	start -> 2
-	start -> 3
+	start -> 3 [color = red]
 }
