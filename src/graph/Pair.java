@@ -1,7 +1,7 @@
 package graph;
 
 import java.util.Objects;
-
+// tạo đối tượng pair
 public class Pair {
     String str1;
     String str2;
